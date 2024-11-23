@@ -21,7 +21,7 @@ CXX       ?= g++
 CXX_VSN   ?= $(shell $(CXX) --version | sed -n '1s/^[^0-9]\+\([0-9]\+\)\(.[0-9-]\)\+.*$$/\1/p')
 
 ifeq ($(NIF_DEBUG),0)
-  OPTIMIZE  = -O3 -march=native -fomit-frame-pointer -fno-stack-protector -flto -DNDEBUG
+  OPTIMIZE  = -O3 -march=native -fomit-frame-pointer -fno-stack-protector -flto -finline-functions -funroll-loops -fprefetch-loop-arrays -DNDEBUG
 else
   OPTIMIZE  = -O0 -g
 endif
