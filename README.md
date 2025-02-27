@@ -62,13 +62,13 @@ Include the following dependency in your project.
 
 Erlang (`rebar.config`):
 ```erlang
-{deps, [{simdjsone, "0.1"}]}.
+{deps, [{simdjsone, "0.5.0"}]}.
 ```
 
 Elixir (`mix.exs`):
 ```elixir
 def deps() do
-  [{:simdjsone, "~> 0.2"}]
+  [{:simdjsone, "~> 0.5.0"}]
 end
 ```
 
