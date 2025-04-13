@@ -40,7 +40,7 @@ else ifeq ($(UNAME_SYS),FreeBSD)
   endif
 endif
 
-ADD_FLAGS  += -fPIC -finline-functions -Wall -std=c++20
+ADD_FLAGS  += -fPIC -finline-functions -Wall -std=c++2a
 CXXFLAGS   += $(ADD_FLAGS) $(OPTIMIZE) $(ERL_CXXFLAGS)
 LDFLAGS    += $(ERL_LDFLAGS) -lei -shared
 
@@ -71,9 +71,11 @@ info:
 simdjson.h simdjson.cpp:
 	wget -q https://raw.githubusercontent.com/simdjson/simdjson/master/singleheader/$@
 
-$(SO_OUTPUT): $(OBJECTS)
-	@mkdir -p $(BASEDIR)/priv/
+$(SO_OUTPUT): $(BASEDIR)/priv $(OBJECTS)
 	$(CXX) $(OBJECTS) $(LDFLAGS) -o $(SO_OUTPUT)
+
+$(BASEDIR)/priv:
+	@mkdir -p $(BASEDIR)/priv/
 
 simdjson.o: simdjson.cpp simdjson.h
 	$(COMPILE_CPP) -c $(OUTPUT_OPTION) $<
